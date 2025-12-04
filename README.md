@@ -26,6 +26,9 @@ Read the button's state
 ## Led blinking
 Loop digitalWrite with LOW and HIGH for one second
 * sketch [led_loop.ino](led_loop/led_loop.ino)
+<video src="https://github.com/user-attachments/assets/31fe8708-af82-47f3-bfcf-37dfd7a667ef"></video>
+
+
 
 ## Running locally
 Developed on Ubuntu 24.
