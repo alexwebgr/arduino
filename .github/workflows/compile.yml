@@ -14,7 +14,7 @@ jobs:
       matrix:
         script:
           - name: temperature_logger_lm_35_factory_test
-            command: arduino-cli compile --fqbn arduino:avr:uno temperature_logger_lm_35_factory_test
+            command: arduino-cli compile --fqbn arduino:avr:uno --build-path build temperature_logger_lm_35_factory_test
 #          - name: some_other_script
 #            command: ./scripts/some_script.sh
 
