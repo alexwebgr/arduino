@@ -12,7 +12,7 @@ END_MARKER = '---END_MARKER---'
 # Flash firmware first with arduino-cli
 puts "Flashing factory test firmware..."
 
-system("arduino-cli compile --fqbn arduino:avr:uno --libraries ./libraries temperature_logger_lm_35_factory_test")
+system("arduino-cli compile --fqbn arduino:avr:uno temperature_logger_lm_35_factory_test")
 system("arduino-cli upload -p #{PORT} --fqbn arduino:avr:uno temperature_logger_lm_35_factory_test")
 
 sleep(2)  # Wait for Arduino to init
