@@ -10,13 +10,15 @@ jobs:
   run-script:
     name: ${{ matrix.script.name }}
     runs-on: ubuntu-latest
+    # use strategy so the tasks can run in parallel rather than sequential. if one fails it doesn't affect the other ones
     strategy:
       matrix:
         script:
+          - name: temperature_logger_lm_35
+            command: arduino-cli compile --fqbn arduino:avr:uno --build-path build temperature_logger_lm_35
+
           - name: temperature_logger_lm_35_factory_test
             command: arduino-cli compile --fqbn arduino:avr:uno --build-path build temperature_logger_lm_35_factory_test
-#          - name: some_other_script
-#            command: ./scripts/some_script.sh
 
     steps:
       - name: Checkout repository
