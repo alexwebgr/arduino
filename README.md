@@ -10,6 +10,7 @@ A simpler logger for the [LM35](https://www.ti.com/lit/ds/symlink/lm35.pdf?ts=17
 * a ruby script that compile uploads and runs the test suite [temperature_logger_lm_35_factory_test.rb](tests/temperature_logger_lm_35_factory_test.rb)
 * a ruby script that will connect and collect the temperature readings in a .csv file [collect_data_lm_35.rb](scripts/collect_data_lm_35.rb)
 * a ruby script that will summarize the findings [analyze_data_lm_35.rb](scripts/analyze_data_lm_35.rb)
+* GitHub actions that will compile the specified sketches
 
 <img src="https://github.com/user-attachments/assets/7a809165-2f97-42b8-87bb-033288ede416" width="300" alt="LM35">
 
@@ -28,7 +29,9 @@ Loop digitalWrite with LOW and HIGH for one second
 * sketch [led_loop.ino](led_loop/led_loop.ino)
 <video src="https://github.com/user-attachments/assets/31fe8708-af82-47f3-bfcf-37dfd7a667ef"></video>
 
-
+## Turn on led with button
+Push the button and the light will go on
+* sketch [button_led.ino](button_led/button_led.ino)
 
 ## Running locally
 Developed on Ubuntu 24.
