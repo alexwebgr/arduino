@@ -27,10 +27,31 @@ jobs:
         with:
           version: '1.x'
 
+      - name: Restore Arduino CLI cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.arduino15
+          key: ${{ runner.os }}-arduino-1.x
+          restore-keys: |
+            ${{ runner.os }}-arduino-
+
       - name: Update index and install AVR core
         run: |
-          arduino-cli core update-index
-          arduino-cli core install arduino:avr
+          if arduino-cli core list | grep -q 'arduino:avr'; then
+            echo "arduino:avr already installed"
+          else
+            arduino-cli core update-index
+            arduino-cli core install arduino:avr
+          fi
+
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: build
+          key: ${{ runner.os }}-arduino-build-${{ hashFiles('**/*.ino','**/*.h','**/*.cpp') }}
+          restore-keys: |
+            ${{ runner.os }}-arduino-build-
 
       - name: Run script
         run: |
