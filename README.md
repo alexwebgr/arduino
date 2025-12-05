@@ -2,6 +2,12 @@
 
 A series of arduino sketches along with some integrations and testing in ruby and arduino.
 
+## Activity Validator
+Simulate sensor input by using the Serial class. Push fake sensor data with a ruby script to the arduino sketch
+to test the business logic not just component integrity.
+* sketch [activity_validator.ino](activity_validator/activity_validator.ino)
+* test [activity_validator_test.rb](tests/activity_validator_test.rb)
+
 ## Temperature Logging with LM35
 A simpler logger for the [LM35](https://www.ti.com/lit/ds/symlink/lm35.pdf?ts=1764811951832) analog sensor that includes 
 
@@ -32,6 +38,10 @@ Loop digitalWrite with LOW and HIGH for one second
 ## Turn on led with button
 Push the button and the light will go on
 * sketch [button_led.ino](button_led/button_led.ino)
+
+## Running factory tests on GitHub actions
+Add a self-hosted runner to run the factory tests on GitHub 
+[source](https://github.com/alexwebgr/arduino/settings/actions/runners/new)
 
 ## Running locally
 Developed on Ubuntu 24.
