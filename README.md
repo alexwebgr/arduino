@@ -20,6 +20,10 @@ A simpler logger for the [LM35](https://www.ti.com/lit/ds/symlink/lm35.pdf?ts=17
 
 <img src="https://github.com/user-attachments/assets/7a809165-2f97-42b8-87bb-033288ede416" width="300" alt="LM35">
 
+## 3 LED fade in and out
+Using 3 LEDs and a potentiometer to dim the lights on and off 
+* sketch [dim_3_leds.ino](dim_3_leds/dim_3_leds.ino)
+
 ## DigitalReadSerial
 Read the button's state
 
