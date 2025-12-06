@@ -6,7 +6,18 @@ const int pin5 = 11;
 const int pins[] = { pin1, pin2, pin3, pin4, pin5 };
 // sizeof will return the bytes not the items, so we divide by the bytes of the first item
 const int pinCount = sizeof(pins) / sizeof(pins[0]);
-int timer = 200;
+const int timer = 200;
+const int fadeStep = 1;
+const int fadeSpeed = 5; // ms delay between updates
+const int maxBrightness = 255;
+const int totalFadeTime = (maxBrightness / fadeStep) * fadeSpeed;
+const int interval = totalFadeTime / 10;
+int brightness[] = {0, 0, 0, 0, 0};
+int direction[] = {1, 1, 1, 1, 1};  // 1=fading up, -1=fading down
+unsigned long previousMillis[] = {0, 0, 0, 0, 0};
+unsigned long sequenceStartTime = 0;
+unsigned long startDelay[] = {0, interval, interval * 2, interval * 3, interval * 4};  // Staggered starts
+bool sequenceActive = false;
 
 void setup() {
   /*
@@ -29,16 +40,10 @@ void loop() {
   ping();
   pong();
   pang();
-  fastBlink();
-  fastBlink();
-  fastBlink();
   pingPong();
-  fastBlink();
-  fastBlink();
-  fastBlink();
   randomize();
-  fastBlink();
   groupChaser();
+//   fadeChaser();
 }
 
 /* Utilities */
@@ -189,5 +194,65 @@ void groupChaser() {
     for (int j = i; j < i + group_size && j < pinCount; j++) {
       digitalWrite(pins[j], LOW);
     }
+  }
+}
+
+void fadeChaser() {
+  if (!sequenceActive) {
+    sequenceStartTime = millis();
+    resetSequence();
+    sequenceActive = true;
+  }
+
+  unsigned long currentMillis = millis();
+  bool allDone = true;
+
+  for (int i = 0; i < pinCount; i++) {
+    updateLED(i, currentMillis);
+    if (brightness[i] > 0 || direction[i] == 1) {
+      allDone = false;
+    }
+  }
+
+  if (allDone) {
+    sequenceActive = false;  // Ready for next call
+  }
+}
+
+void resetSequence() {
+  for (int i = 0; i < pinCount; i++) {
+    brightness[i] = 0;
+    direction[i] = 1;
+    previousMillis[i] = 0;
+    // startDelay relative to sequence start
+    startDelay[i] = sequenceStartTime + (interval * i);
+  }
+}
+
+void updateLED(int ledIndex, unsigned long currentMillis) {
+  if (currentMillis < startDelay[ledIndex]) {
+    return;
+  }
+
+  if (currentMillis - previousMillis[ledIndex] >= fadeSpeed) {
+    previousMillis[ledIndex] = currentMillis;
+
+    // Each LED independently fades
+    if (direction[ledIndex] == 1) {
+      brightness[ledIndex] += fadeStep;
+    } else {
+      brightness[ledIndex] -= fadeStep;
+    }
+
+    // Each LED independently switches at max
+    if (brightness[ledIndex] >= maxBrightness) {
+      brightness[ledIndex] = maxBrightness;
+      direction[ledIndex] = -1;
+    }
+    if (brightness[ledIndex] <= 0) {
+      brightness[ledIndex] = 0;
+    }
+
+    analogWrite(pins[ledIndex], brightness[ledIndex]);
   }
 }
