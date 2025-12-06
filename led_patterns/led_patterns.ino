@@ -1,7 +1,9 @@
-const int greenPin = 3;
-const int yellowPin = 5;
-const int redPin = 9;
-const int pins[] = { greenPin, yellowPin, redPin };
+const int pin1 = 3;
+const int pin2 = 5;
+const int pin3 = 9;
+const int pin4 = 10;
+const int pin5 = 11;
+const int pins[] = { pin1, pin2, pin3, pin4, pin5 };
 // sizeof will return the bytes not the items, so we divide by the bytes of the first item
 const int pinCount = sizeof(pins) / sizeof(pins[0]);
 int timer = 200;
@@ -35,6 +37,8 @@ void loop() {
   fastBlink();
   fastBlink();
   randomize();
+  fastBlink();
+  groupChaser();
 }
 
 /* Utilities */
@@ -148,7 +152,42 @@ void randomize() {
     int randomIndex = random(0, pinCount);
 
     digitalWrite(pins[randomIndex], HIGH);
-    delay(100);
+    delay(timer);
     digitalWrite(pins[randomIndex], LOW);
+  }
+}
+
+/**
+  Pattern: Group chaser
+  divide in groups of 2 and blink them together like the chaser
+  pin 1 om
+  pin 2 om
+  delay
+  pin 1 off
+  pin 2 off
+  pin 3 on
+  pin 4 on
+  delay
+  pin 3 off
+  pin 4 off
+  pin 5 on
+  pin 6 on
+  delay
+  pin 5 off
+  pin 6 off
+  delay
+*/
+void groupChaser() {
+  int group_size = 2;
+  for (int i = 0; i < pinCount; i += group_size) {
+    for (int j = i; j < i + group_size && j < pinCount; j++) {
+      digitalWrite(pins[j], HIGH);
+    }
+
+    delay(timer);
+
+    for (int j = i; j < i + group_size && j < pinCount; j++) {
+      digitalWrite(pins[j], LOW);
+    }
   }
 }
