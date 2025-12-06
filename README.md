@@ -44,6 +44,7 @@ Loop digitalWrite with LOW and HIGH for one second
 ## Turn on led with button
 Push the button and the light will go on
 * sketch [button_led.ino](button_led/button_led.ino)
+<video src="https://github.com/user-attachments/assets/c609e72f-4ee8-49a6-80d6-496342afb0b6"></video>
 
 ## Running factory tests on GitHub actions
 Add a self-hosted runner to run the factory tests on GitHub 
