@@ -24,6 +24,8 @@ A simpler logger for the [LM35](https://www.ti.com/lit/ds/symlink/lm35.pdf?ts=17
 Using 3 LEDs and a potentiometer to dim the lights on and off 
 * sketch [dim_3_leds.ino](dim_3_leds/dim_3_leds.ino)
 
+<video src="https://github.com/user-attachments/assets/6410792f-89dd-4632-9545-7dc56d1b21ae"></video>
+
 ## DigitalReadSerial
 Read the button's state
 
