@@ -37,6 +37,7 @@ void loop() {
 }
 
 void updateState(int activePin, String stateName) {
+  random()
   digitalWrite(PIN_REST, LOW);
   digitalWrite(PIN_WALK, LOW);
   digitalWrite(PIN_RUN, LOW);

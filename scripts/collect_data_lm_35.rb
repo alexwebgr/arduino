@@ -13,7 +13,7 @@ OUTPUT_FILE = 'temperature_data.csv'
 if ARGV[0] == "--install"
   puts "Flashing temperature_logger_lm_35..."
   system("arduino-cli compile --fqbn arduino:avr:uno temperature_logger_lm_35")
-  system("arduino-cli upload -p #{PORT_NAME} --fqbn arduino:avr:uno temperature_logger_lm_35")
+  system("arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno temperature_logger_lm_35")
 end
 
 begin
