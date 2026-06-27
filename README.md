@@ -23,6 +23,7 @@ A simpler logger for the [LM35](https://www.ti.com/lit/ds/symlink/lm35.pdf?ts=17
 ## 3 LED fade in and out
 Using 3 LEDs and a potentiometer to dim the lights on and off 
 * sketch [dim_3_leds.ino](dim_3_leds/dim_3_leds.ino)
+
 https://github.com/user-attachments/assets/05916c92-a34e-41c9-a8df-c50afe1ddfaf
 
 ## DigitalReadSerial
